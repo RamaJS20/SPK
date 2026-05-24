@@ -33,7 +33,7 @@ $navItems = [
 <!-- Sidebar -->
 <aside class="sidebar" id="sidebar">
     <div class="sidebar-brand">
-        <img src="<?= BASE_URL ?>/bri.png" alt="BRI Logo" style="height: 44px; width: auto; margin-bottom: 12px; object-fit: contain; filter: drop-shadow(2px 0 0 #fff) drop-shadow(-2px 0 0 #fff) drop-shadow(0 2px 0 #fff) drop-shadow(0 -2px 0 #fff) drop-shadow(1.5px 1.5px 0 #fff) drop-shadow(-1.5px 1.5px 0 #fff) drop-shadow(1.5px -1.5px 0 #fff) drop-shadow(-1.5px -1.5px 0 #fff) drop-shadow(0 4px 8px rgba(0,0,0,0.5));">
+        <img src="<?= BASE_URL ?>/bri.png" alt="BRI Logo" style="height: 44px; width: auto; margin-bottom: 12px; object-fit: contain; filter: drop-shadow(2px 0 0 #000) drop-shadow(-2px 0 0 #000) drop-shadow(0 2px 0 #000) drop-shadow(0 -2px 0 #000) drop-shadow(1.5px 1.5px 0 #000) drop-shadow(-1.5px 1.5px 0 #000) drop-shadow(1.5px -1.5px 0 #000) drop-shadow(-1.5px -1.5px 0 #000);">
         <h6>SPK Karyawan Terbaik</h6>
         <small>Bank BRI KCP Arundina</small>
     </div>

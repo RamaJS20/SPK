@@ -87,7 +87,7 @@ if ($selectedPeriode) {
         <!-- Header -->
         <div style="text-align:center;border-bottom:3px double #003087;padding-bottom:16px;margin-bottom:20px;">
             <div style="display:flex;align-items:center;justify-content:center;gap:20px;margin-bottom:12px;">
-                <img src="<?= BASE_URL ?>/bri.png" alt="BRI Logo" style="height: 52px; width: auto; object-fit: contain; filter: drop-shadow(2px 0 0 #cbd5e1) drop-shadow(-2px 0 0 #cbd5e1) drop-shadow(0 2px 0 #cbd5e1) drop-shadow(0 -2px 0 #cbd5e1) drop-shadow(1.5px 1.5px 0 #cbd5e1) drop-shadow(-1.5px 1.5px 0 #cbd5e1) drop-shadow(1.5px -1.5px 0 #cbd5e1) drop-shadow(-1.5px -1.5px 0 #cbd5e1) drop-shadow(0 4px 8px rgba(0, 0, 0, 0.08));">
+                <img src="<?= BASE_URL ?>/bri.png" alt="BRI Logo" style="height: 52px; width: auto; object-fit: contain; filter: drop-shadow(2px 0 0 #000) drop-shadow(-2px 0 0 #000) drop-shadow(0 2px 0 #000) drop-shadow(0 -2px 0 #000) drop-shadow(1.5px 1.5px 0 #000) drop-shadow(-1.5px 1.5px 0 #000) drop-shadow(1.5px -1.5px 0 #000) drop-shadow(-1.5px -1.5px 0 #000);">
                 <div>
                     <div style="font-size:18px;font-weight:700;color:#003087;">BANK RAKYAT INDONESIA</div>
                     <div style="font-size:14px;color:#555;">Kantor Cabang Pembantu Arundina</div>

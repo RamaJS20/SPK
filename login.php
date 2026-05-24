@@ -41,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <div class="login-page">
     <div class="login-card">
         <div class="login-logo">
-            <img src="<?= BASE_URL ?>/bri.png" alt="BRI Logo" style="height: 52px; width: auto; margin-bottom: 16px; object-fit: contain; filter: drop-shadow(2px 0 0 #cbd5e1) drop-shadow(-2px 0 0 #cbd5e1) drop-shadow(0 2px 0 #cbd5e1) drop-shadow(0 -2px 0 #cbd5e1) drop-shadow(1.5px 1.5px 0 #cbd5e1) drop-shadow(-1.5px 1.5px 0 #cbd5e1) drop-shadow(1.5px -1.5px 0 #cbd5e1) drop-shadow(-1.5px -1.5px 0 #cbd5e1) drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));">
+            <img src="<?= BASE_URL ?>/bri.png" alt="BRI Logo" style="height: 52px; width: auto; margin-bottom: 16px; object-fit: contain; filter: drop-shadow(2px 0 0 #000) drop-shadow(-2px 0 0 #000) drop-shadow(0 2px 0 #000) drop-shadow(0 -2px 0 #000) drop-shadow(1.5px 1.5px 0 #000) drop-shadow(-1.5px 1.5px 0 #000) drop-shadow(1.5px -1.5px 0 #000) drop-shadow(-1.5px -1.5px 0 #000);">
             <h4>SPK Karyawan Terbaik</h4>
             <p>Bank BRI KCP Arundina</p>
         </div>
