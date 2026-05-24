@@ -38,30 +38,30 @@ if ($latestCalc) {
 $totalPenilaian = $db->query("SELECT COUNT(DISTINCT periode) FROM penilaian")->fetchColumn();
 ?>
 
-<div class="page-header">
-    <h1>📊 Dashboard</h1>
+<div class="page-header" style="display:flex;flex-direction:column;gap:4px;">
+    <h1 style="display:flex;align-items:center;gap:10px;"><i data-lucide="layout-dashboard" style="width:28px;height:28px;color:var(--bri-blue);"></i> Dashboard</h1>
     <p>Selamat datang, <strong><?= htmlspecialchars($user['username']) ?></strong>. Berikut ringkasan sistem SPK Karyawan Terbaik.</p>
 </div>
 
 <!-- Stat Cards -->
 <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px;margin-bottom:28px;">
     <div class="stat-card blue">
-        <div class="stat-icon blue">👥</div>
+        <div class="stat-icon blue"><i data-lucide="users"></i></div>
         <div class="stat-value"><?= $totalKaryawan ?></div>
         <div class="stat-label">Total Karyawan</div>
     </div>
     <div class="stat-card gold">
-        <div class="stat-icon gold">📋</div>
+        <div class="stat-icon gold"><i data-lucide="clipboard-list"></i></div>
         <div class="stat-value"><?= $totalKriteria ?></div>
         <div class="stat-label">Total Kriteria</div>
     </div>
     <div class="stat-card green">
-        <div class="stat-icon green">📅</div>
+        <div class="stat-icon green"><i data-lucide="calendar"></i></div>
         <div class="stat-value"><?= count($periodeList) ?></div>
         <div class="stat-label">Periode Penilaian</div>
     </div>
     <div class="stat-card <?= (abs((float)$bobotTotal - 1.0) < 0.0001) ? 'green' : 'red' ?>">
-        <div class="stat-icon <?= (abs((float)$bobotTotal - 1.0) < 0.0001) ? 'green' : 'red' ?>">⚖️</div>
+        <div class="stat-icon <?= (abs((float)$bobotTotal - 1.0) < 0.0001) ? 'green' : 'red' ?>"><i data-lucide="scale"></i></div>
         <div class="stat-value"><?= number_format((float)$bobotTotal, 2) ?></div>
         <div class="stat-label">Total Bobot Kriteria</div>
     </div>
@@ -71,7 +71,7 @@ $totalPenilaian = $db->query("SELECT COUNT(DISTINCT periode) FROM penilaian")->f
     <!-- Chart Top 5 -->
     <div class="card">
         <div class="card-header">
-            <h5>🏆 Top 5 Karyawan Terbaik</h5>
+            <h5 style="display:flex;align-items:center;gap:8px;"><i data-lucide="award" style="width:18px;height:18px;color:var(--bri-blue);"></i> Top 5 Karyawan Terbaik</h5>
             <?php if ($latestCalc): ?>
                 <span style="font-size:12px;color:#718096;">
                     <?= htmlspecialchars($latestCalc) ?>
@@ -81,7 +81,7 @@ $totalPenilaian = $db->query("SELECT COUNT(DISTINCT periode) FROM penilaian")->f
         <div class="card-body">
             <?php if (empty($top5)): ?>
                 <div class="empty-state">
-                    <i>📊</i>
+                    <i data-lucide="bar-chart-3" style="width:36px;height:36px;color:#a0aec0;margin-bottom:12px;"></i>
                     <p>Belum ada hasil perhitungan MOORA.<br>
                     <a href="<?= BASE_URL ?>/hasil.php" style="color:var(--bri-blue);">Hitung sekarang →</a></p>
                 </div>
@@ -96,30 +96,30 @@ $totalPenilaian = $db->query("SELECT COUNT(DISTINCT periode) FROM penilaian")->f
     <!-- Quick Actions -->
     <div class="card">
         <div class="card-header">
-            <h5>⚡ Akses Cepat</h5>
+            <h5 style="display:flex;align-items:center;gap:8px;"><i data-lucide="zap" style="width:18px;height:18px;color:var(--bri-blue);"></i> Akses Cepat</h5>
         </div>
         <div class="card-body">
             <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
                 <?php if (isAdmin()): ?>
                 <a href="<?= BASE_URL ?>/karyawan.php" class="btn btn-outline" style="justify-content:center;padding:16px 12px;flex-direction:column;gap:8px;height:auto;">
-                    <span style="font-size:24px;">👥</span>
+                    <i data-lucide="users" style="width:24px;height:24px;"></i>
                     <span>Karyawan</span>
                 </a>
                 <a href="<?= BASE_URL ?>/kriteria.php" class="btn btn-outline" style="justify-content:center;padding:16px 12px;flex-direction:column;gap:8px;height:auto;">
-                    <span style="font-size:24px;">📋</span>
+                    <i data-lucide="clipboard-list" style="width:24px;height:24px;"></i>
                     <span>Kriteria</span>
                 </a>
                 <a href="<?= BASE_URL ?>/penilaian.php" class="btn btn-primary" style="justify-content:center;padding:16px 12px;flex-direction:column;gap:8px;height:auto;">
-                    <span style="font-size:24px;">✏️</span>
+                    <i data-lucide="pen-tool" style="width:24px;height:24px;"></i>
                     <span>Input Nilai</span>
                 </a>
                 <?php endif; ?>
                 <a href="<?= BASE_URL ?>/hasil.php" class="btn btn-gold" style="justify-content:center;padding:16px 12px;flex-direction:column;gap:8px;height:auto;">
-                    <span style="font-size:24px;">🏆</span>
+                    <i data-lucide="trophy" style="width:24px;height:24px;"></i>
                     <span>Hasil MOORA</span>
                 </a>
                 <a href="<?= BASE_URL ?>/laporan.php" class="btn btn-success" style="justify-content:center;padding:16px 12px;flex-direction:column;gap:8px;height:auto;">
-                    <span style="font-size:24px;">📄</span>
+                    <i data-lucide="file-text" style="width:24px;height:24px;"></i>
                     <span>Laporan PDF</span>
                 </a>
             </div>
@@ -131,7 +131,7 @@ $totalPenilaian = $db->query("SELECT COUNT(DISTINCT periode) FROM penilaian")->f
 <?php if (!empty($top5)): ?>
 <div class="card">
     <div class="card-header">
-        <h5>🥇 Peringkat Karyawan Terbaik — <?= htmlspecialchars($latestCalc) ?></h5>
+        <h5 style="display:flex;align-items:center;gap:8px;"><i data-lucide="medal" style="width:18px;height:18px;color:var(--bri-blue);"></i> Peringkat Karyawan Terbaik — <?= htmlspecialchars($latestCalc) ?></h5>
         <a href="<?= BASE_URL ?>/hasil.php" class="btn btn-sm btn-outline">Lihat Semua →</a>
     </div>
     <div class="table-wrapper">
@@ -162,7 +162,7 @@ $totalPenilaian = $db->query("SELECT COUNT(DISTINCT periode) FROM penilaian")->f
                     <td><code><?= number_format((float)$row['skor_akhir'], 6) ?></code></td>
                     <td>
                         <?php if ($row['peringkat'] === 1): ?>
-                            <span class="badge badge-terbaik">🏆 Terbaik</span>
+                            <span class="badge badge-terbaik" style="display:inline-flex;align-items:center;gap:4px;"><i data-lucide="trophy" style="width:12px;height:12px;"></i> Terbaik</span>
                         <?php elseif ($row['peringkat'] <= 3): ?>
                             <span class="badge" style="background:#f0fff4;color:#22543d;">Top 3</span>
                         <?php else: ?>

@@ -33,8 +33,8 @@ if ($selectedPeriode) {
 $hasResults = !empty($hasilList);
 ?>
 
-<div class="page-header">
-    <h1>🏆 Hasil Perhitungan MOORA</h1>
+<div class="page-header" style="display:flex;flex-direction:column;gap:4px;">
+    <h1 style="display:flex;align-items:center;gap:10px;"><i data-lucide="award" style="width:28px;height:28px;color:var(--bri-blue);"></i> Hasil Perhitungan MOORA</h1>
     <p>Peringkat karyawan terbaik berdasarkan metode MOORA.</p>
 </div>
 
@@ -61,12 +61,15 @@ $hasResults = !empty($hasilList);
                     <option value="Operasional" <?= $selectedDivisi === 'Operasional' ? 'selected' : '' ?>>Operasional</option>
                 </select>
             </div>
-            <button type="submit" class="btn btn-outline">🔍 Tampilkan</button>
+            <button type="submit" class="btn btn-outline" style="display:inline-flex;align-items:center;gap:6px;">
+                <i data-lucide="search" style="width:14px;height:14px;"></i> Tampilkan
+            </button>
             <?php if ($selectedPeriode): ?>
                 <a href="hasil.php?periode=<?= urlencode($selectedPeriode) ?>&divisi=<?= urlencode($selectedDivisi) ?>&hitung=1"
                    class="btn btn-gold"
+                   style="display:inline-flex;align-items:center;gap:6px;"
                    onclick="Spinner.show('Menghitung MOORA...')">
-                    ⚙️ Hitung MOORA
+                    <i data-lucide="calculator" style="width:14px;height:14px;"></i> Hitung MOORA
                 </a>
             <?php endif; ?>
         </form>
@@ -74,19 +77,26 @@ $hasResults = !empty($hasilList);
 </div>
 
 <?php if (isset($moora_error)): ?>
-    <div class="alert alert-danger">⚠️ <?= htmlspecialchars($moora_error) ?></div>
+    <div class="alert alert-danger" style="display:flex;align-items:center;gap:8px;">
+        <i data-lucide="alert-circle" style="width:18px;height:18px;flex-shrink:0;"></i>
+        <span><?= htmlspecialchars($moora_error) ?></span>
+    </div>
 <?php elseif (isset($moora_result) && !empty($moora_result['results'])): ?>
-    <div class="alert alert-success">✅ Perhitungan MOORA berhasil! <?= count($moora_result['results']) ?> karyawan telah diranking.</div>
+    <div class="alert alert-success" style="display:flex;align-items:center;gap:8px;">
+        <i data-lucide="check-circle" style="width:18px;height:18px;flex-shrink:0;"></i>
+        <span>Perhitungan MOORA berhasil! <?= count($moora_result['results']) ?> karyawan telah diranking.</span>
+    </div>
 <?php endif; ?>
 
 <?php if (empty($periodeList)): ?>
-    <div class="alert alert-warning">
-        ⚠️ Belum ada data penilaian. <a href="<?= BASE_URL ?>/penilaian.php" style="color:inherit;font-weight:700;">Input penilaian</a> terlebih dahulu.
+    <div class="alert alert-warning" style="display:flex;align-items:center;gap:8px;">
+        <i data-lucide="alert-triangle" style="width:18px;height:18px;flex-shrink:0;"></i>
+        <span>Belum ada data penilaian. <a href="<?= BASE_URL ?>/penilaian.php" style="color:inherit;font-weight:700;">Input penilaian</a> terlebih dahulu.</span>
     </div>
 <?php elseif ($selectedPeriode && !$hasResults): ?>
-    <div class="alert alert-info">
-        ℹ️ Belum ada hasil untuk periode <strong><?= htmlspecialchars($selectedPeriode) ?></strong>.
-        Klik <strong>"Hitung MOORA"</strong> untuk memproses.
+    <div class="alert alert-info" style="display:flex;align-items:center;gap:8px;">
+        <i data-lucide="info" style="width:18px;height:18px;flex-shrink:0;"></i>
+        <span>Belum ada hasil untuk periode <strong><?= htmlspecialchars($selectedPeriode) ?></strong>. Klik <strong>"Hitung MOORA"</strong> untuk memproses.</span>
     </div>
 <?php endif; ?>
 
@@ -94,10 +104,12 @@ $hasResults = !empty($hasilList);
 <!-- Results Table -->
 <div class="card" style="margin-bottom:24px;">
     <div class="card-header">
-        <h5>🏆 Peringkat Karyawan — <?= htmlspecialchars($selectedPeriode) ?></h5>
+        <h5 style="display:flex;align-items:center;gap:8px;"><i data-lucide="trophy" style="width:18px;height:18px;color:var(--bri-blue);"></i> Peringkat Karyawan — <?= htmlspecialchars($selectedPeriode) ?></h5>
         <div style="display:flex;gap:8px;">
             <a href="laporan.php?periode=<?= urlencode($selectedPeriode) ?>&divisi=<?= urlencode($selectedDivisi) ?>"
-               class="btn btn-sm btn-success">📄 Export PDF</a>
+               class="btn btn-sm btn-success" style="display:inline-flex;align-items:center;gap:4px;">
+                <i data-lucide="file-text" style="width:12px;height:12px;"></i> Export PDF
+            </a>
         </div>
     </div>
     <div class="table-wrapper">
@@ -138,11 +150,11 @@ $hasResults = !empty($hasilList);
                     </td>
                     <td>
                         <?php if ($row['peringkat'] === 1): ?>
-                            <span class="badge badge-terbaik">🏆 Terbaik</span>
+                            <span class="badge badge-terbaik" style="display:inline-flex;align-items:center;gap:4px;"><i data-lucide="award" style="width:12px;height:12px;"></i> Terbaik</span>
                         <?php elseif ($row['peringkat'] === 2): ?>
-                            <span class="badge" style="background:#f0f0f0;color:#555;">🥈 Runner Up</span>
+                            <span class="badge" style="background:#f0f0f0;color:#555;display:inline-flex;align-items:center;gap:4px;"><i data-lucide="star" style="width:12px;height:12px;fill:#ccc;color:#888;"></i> Runner Up</span>
                         <?php elseif ($row['peringkat'] === 3): ?>
-                            <span class="badge" style="background:#fff3e0;color:#7b4f00;">🥉 Peringkat 3</span>
+                            <span class="badge" style="background:#fff3e0;color:#7b4f00;display:inline-flex;align-items:center;gap:4px;"><i data-lucide="star" style="width:12px;height:12px;fill:#ffb74d;color:#f57c00;"></i> Peringkat 3</span>
                         <?php else: ?>
                             <span class="badge" style="background:#f7fafc;color:#718096;">Peringkat <?= $row['peringkat'] ?></span>
                         <?php endif; ?>
@@ -158,7 +170,7 @@ $hasResults = !empty($hasilList);
 <?php if (isset($moora_result) && !empty($moora_result['results'])): ?>
 <div class="card">
     <div class="card-header">
-        <h5>📐 Detail Perhitungan MOORA</h5>
+        <h5 style="display:flex;align-items:center;gap:8px;"><i data-lucide="calculator" style="width:18px;height:18px;color:var(--bri-blue);"></i> Detail Perhitungan MOORA</h5>
         <button class="btn btn-sm btn-secondary" onclick="toggleDetail()">Tampilkan/Sembunyikan</button>
     </div>
     <div id="moora-detail" style="display:none;">

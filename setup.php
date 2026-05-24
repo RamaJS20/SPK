@@ -79,7 +79,7 @@ runSQL($db, "CREATE TABLE IF NOT EXISTS `hasil_moora` (
 $adminHash    = password_hash('admin123',    PASSWORD_DEFAULT);
 $pimpinanHash = password_hash('pimpinan123', PASSWORD_DEFAULT);
 
-$stmt = $db->prepare("INSERT IGNORE INTO users (username, password, role) VALUES (?, ?, ?)");
+$stmt = $db->prepare("INSERT INTO users (username, password, role) VALUES (?, ?, ?) ON DUPLICATE KEY UPDATE password = VALUES(password), role = VALUES(role)");
 $stmt->execute(['admin',    $adminHash,    'admin']);
 $log[] = "✅ Seed user: admin (password: admin123)";
 $stmt->execute(['pimpinan', $pimpinanHash, 'pimpinan']);

@@ -31,20 +31,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login — SPK Karyawan Terbaik</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="<?= BASE_URL ?>/assets/css/style.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
 <div class="login-page">
     <div class="login-card">
         <div class="login-logo">
-            <div class="logo-circle">BRI</div>
+            <img src="<?= BASE_URL ?>/bri.png" alt="BRI Logo" style="height: 52px; width: auto; margin-bottom: 16px; object-fit: contain; filter: drop-shadow(2px 0 0 #cbd5e1) drop-shadow(-2px 0 0 #cbd5e1) drop-shadow(0 2px 0 #cbd5e1) drop-shadow(0 -2px 0 #cbd5e1) drop-shadow(1.5px 1.5px 0 #cbd5e1) drop-shadow(-1.5px 1.5px 0 #cbd5e1) drop-shadow(1.5px -1.5px 0 #cbd5e1) drop-shadow(-1.5px -1.5px 0 #cbd5e1) drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));">
             <h4>SPK Karyawan Terbaik</h4>
             <p>Bank BRI KCP Arundina</p>
         </div>
 
         <?php if ($error): ?>
-            <div class="alert alert-danger">
-                <span>⚠️</span>
+            <div class="alert alert-danger" style="display:flex;align-items:center;gap:8px;">
+                <i data-lucide="alert-circle" style="width:18px;height:18px;flex-shrink:0;"></i>
                 <span><?= htmlspecialchars($error) ?></span>
             </div>
         <?php endif; ?>
@@ -79,13 +83,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     >
                     <button type="button"
                         onclick="togglePassword()"
-                        style="position:absolute;right:12px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;font-size:16px;color:#718096;"
-                        id="toggle-pw">👁</button>
+                        style="position:absolute;right:12px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;display:flex;align-items:center;color:#718096;"
+                        id="toggle-pw">
+                        <i data-lucide="eye" id="toggle-pw-icon" style="width:18px;height:18px;"></i>
+                    </button>
                 </div>
             </div>
 
-            <button type="submit" class="btn btn-primary w-100" style="justify-content:center;padding:12px;">
-                🔐 Masuk
+            <button type="submit" class="btn btn-primary w-100" style="justify-content:center;padding:12px;gap:8px;">
+                <i data-lucide="lock" style="width:16px;height:16px;"></i> Masuk
             </button>
         </form>
 
@@ -101,15 +107,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <script>
 function togglePassword() {
     const pw = document.getElementById('password');
-    const btn = document.getElementById('toggle-pw');
+    const icon = document.getElementById('toggle-pw-icon');
     if (pw.type === 'password') {
         pw.type = 'text';
-        btn.textContent = '🙈';
+        icon.setAttribute('data-lucide', 'eye-off');
     } else {
         pw.type = 'password';
-        btn.textContent = '👁';
+        icon.setAttribute('data-lucide', 'eye');
     }
+    lucide.createIcons();
 }
+lucide.createIcons();
 </script>
 </body>
 </html>

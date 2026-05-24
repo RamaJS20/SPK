@@ -43,13 +43,8 @@ class PDF extends FPDF {
         $this->SetFillColor(0, 48, 135);
         $this->Rect(0, 0, 210, 35, 'F');
 
-        // Logo placeholder
-        $this->SetFillColor(255, 215, 0);
-        $this->RoundedRect(10, 5, 25, 25, 3, 'F');
-        $this->SetFont('Arial', 'B', 12);
-        $this->SetTextColor(0, 48, 135);
-        $this->SetXY(10, 12);
-        $this->Cell(25, 10, 'BRI', 0, 0, 'C');
+        // Logo image
+        $this->Image(__DIR__ . '/bri.png', 10, 6, 25, 23);
 
         // Title
         $this->SetTextColor(255, 255, 255);

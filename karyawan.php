@@ -83,8 +83,8 @@ if (isset($_GET['edit'])) {
 }
 ?>
 
-<div class="page-header">
-    <h1>👥 Manajemen Karyawan</h1>
+<div class="page-header" style="display:flex;flex-direction:column;gap:4px;">
+    <h1 style="display:flex;align-items:center;gap:10px;"><i data-lucide="users" style="width:28px;height:28px;color:var(--bri-blue);"></i> Manajemen Karyawan</h1>
     <p>Kelola data karyawan Bank BRI KCP Arundina.</p>
 </div>
 
@@ -98,18 +98,18 @@ if (isset($_GET['edit'])) {
                 <option value="Operasional" <?= $filterDivisi === 'Operasional' ? 'selected' : '' ?>>Operasional</option>
             </select>
             <?php if ($filterDivisi): ?>
-                <a href="karyawan.php" class="btn btn-secondary btn-sm">✕ Reset</a>
+                <a href="karyawan.php" class="btn btn-secondary btn-sm" style="display:inline-flex;align-items:center;gap:4px;"><i data-lucide="rotate-ccw" style="width:12px;height:12px;"></i> Reset</a>
             <?php endif; ?>
         </form>
     </div>
     <button class="btn btn-primary" onclick="Modal.open('modal-karyawan')">
-        ➕ Tambah Karyawan
+        <i data-lucide="user-plus" style="width:16px;height:16px;"></i> Tambah Karyawan
     </button>
 </div>
 
 <?php if (!empty($errors)): ?>
-    <div class="alert alert-danger">
-        <span>⚠️</span>
+    <div class="alert alert-danger" style="display:flex;align-items:center;gap:8px;">
+        <i data-lucide="alert-circle" style="width:18px;height:18px;flex-shrink:0;"></i>
         <div><?= implode('<br>', array_map('htmlspecialchars', $errors)) ?></div>
     </div>
 <?php endif; ?>
@@ -117,13 +117,13 @@ if (isset($_GET['edit'])) {
 <!-- Table -->
 <div class="card">
     <div class="card-header">
-        <h5>📋 Daftar Karyawan</h5>
+        <h5 style="display:flex;align-items:center;gap:8px;"><i data-lucide="clipboard-list" style="width:18px;height:18px;color:var(--bri-blue);"></i> Daftar Karyawan</h5>
         <span style="font-size:13px;color:#718096;"><?= count($karyawanList) ?> karyawan</span>
     </div>
     <div class="table-wrapper">
         <?php if (empty($karyawanList)): ?>
             <div class="empty-state">
-                <i>👥</i>
+                <i data-lucide="users" style="width:36px;height:36px;color:#a0aec0;margin-bottom:12px;display:block;margin-left:auto;margin-right:auto;"></i>
                 <p>Belum ada data karyawan.</p>
             </div>
         <?php else: ?>
@@ -156,11 +156,11 @@ if (isset($_GET['edit'])) {
                         <div style="display:flex;gap:6px;">
                             <button class="btn btn-sm btn-outline"
                                 onclick="openEditModal(<?= htmlspecialchars(json_encode($k)) ?>)">
-                                ✏️ Edit
+                                <i data-lucide="edit-2" style="width:12px;height:12px;"></i> Edit
                             </button>
-                            <button class="btn btn-sm btn-danger"
+                            <button class="btn btn-sm btn-danger btn-icon"
                                 onclick="confirmDelete('karyawan.php?delete=<?= $k['id'] ?>', '<?= htmlspecialchars(addslashes($k['nama'])) ?>')">
-                                🗑️
+                                <i data-lucide="trash-2" style="width:12px;height:12px;"></i>
                             </button>
                         </div>
                     </td>
@@ -176,7 +176,10 @@ if (isset($_GET['edit'])) {
 <div class="modal-overlay" id="modal-karyawan">
     <div class="modal-box">
         <div class="modal-header">
-            <h5 id="modal-karyawan-title">➕ Tambah Karyawan</h5>
+            <h5 id="modal-karyawan-title" style="display:flex;align-items:center;gap:8px;">
+                <i data-lucide="user-plus" id="modal-karyawan-icon" style="width:18px;height:18px;color:var(--bri-blue);"></i>
+                <span id="modal-karyawan-text">Tambah Karyawan</span>
+            </h5>
             <button class="modal-close" onclick="Modal.close('modal-karyawan')">×</button>
         </div>
         <form method="POST" id="form-karyawan">
@@ -209,7 +212,10 @@ if (isset($_GET['edit'])) {
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" onclick="Modal.close('modal-karyawan')">Batal</button>
-                <button type="submit" class="btn btn-primary" id="btn-submit-karyawan">💾 Simpan</button>
+                <button type="submit" class="btn btn-primary" id="btn-submit-karyawan" style="display:inline-flex;align-items:center;gap:6px;">
+                    <i data-lucide="save" style="width:14px;height:14px;"></i>
+                    <span id="btn-submit-text">Simpan</span>
+                </button>
             </div>
         </form>
     </div>
@@ -219,14 +225,16 @@ if (isset($_GET['edit'])) {
 $extraScripts = <<<'HTML'
 <script>
 function openEditModal(data) {
-    document.getElementById('modal-karyawan-title').textContent = '✏️ Edit Karyawan';
+    document.getElementById('modal-karyawan-text').textContent = 'Edit Karyawan';
+    document.getElementById('modal-karyawan-icon').setAttribute('data-lucide', 'edit-2');
     document.getElementById('form-action').value = 'edit';
     document.getElementById('form-id').value = data.id;
     document.getElementById('form-nama').value = data.nama;
     document.getElementById('form-nip').value = data.nip;
     document.getElementById('form-divisi').value = data.divisi;
     document.getElementById('form-jabatan').value = data.jabatan;
-    document.getElementById('btn-submit-karyawan').textContent = '💾 Perbarui';
+    document.getElementById('btn-submit-text').textContent = 'Perbarui';
+    lucide.createIcons();
     Modal.open('modal-karyawan');
 }
 
@@ -237,11 +245,13 @@ document.getElementById('modal-karyawan').addEventListener('click', function(e) 
 document.querySelector('#modal-karyawan .modal-close').addEventListener('click', resetKaryawanModal);
 
 function resetKaryawanModal() {
-    document.getElementById('modal-karyawan-title').textContent = '➕ Tambah Karyawan';
+    document.getElementById('modal-karyawan-text').textContent = 'Tambah Karyawan';
+    document.getElementById('modal-karyawan-icon').setAttribute('data-lucide', 'user-plus');
     document.getElementById('form-action').value = 'add';
     document.getElementById('form-id').value = '0';
     document.getElementById('form-karyawan').reset();
-    document.getElementById('btn-submit-karyawan').textContent = '💾 Simpan';
+    document.getElementById('btn-submit-text').textContent = 'Simpan';
+    lucide.createIcons();
 }
 </script>
 HTML;

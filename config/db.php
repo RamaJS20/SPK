@@ -1,5 +1,5 @@
 <?php
-define('DB_HOST', '127.0.0.1;port=3307');
+define('DB_HOST', 'localhost');
 define('DB_NAME', 'spk_karyawan');
 define('DB_USER', 'root');
 define('DB_PASS', '');
@@ -22,3 +22,5 @@ function getDB(): PDO {
     }
     return $pdo;
 }
+
+

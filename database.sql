@@ -68,9 +68,9 @@ CREATE TABLE IF NOT EXISTS `hasil_moora` (
 -- pimpinan password = 'pimpinan123'
 -- These hashes are generated with password_hash() and are valid:
 INSERT INTO `users` (`username`, `password`, `role`) VALUES
-('admin',    '$2y$10$YourHashHere_RunSetupPhpInstead_xxxxxxxxxxxxxxxxxxxxxxxxx', 'admin'),
-('pimpinan', '$2y$10$YourHashHere_RunSetupPhpInstead_xxxxxxxxxxxxxxxxxxxxxxxxx', 'pimpinan')
-ON DUPLICATE KEY UPDATE username=username;
+('admin',    '$2y$10$gUCHGTcTDNejAnzHzvMlz.BDmodEbV/TZqOAEVg.yG9E9GSlZ/aUu', 'admin'),
+('pimpinan', '$2y$10$hVLCyu76xA8dhxpD0NwVCOVp57F1vAXZmKUGmYKlUpjtSPdbjGG1O', 'pimpinan')
+ON DUPLICATE KEY UPDATE password=VALUES(password);
 
 -- Sample Kriteria (bobot total = 1.0)
 INSERT INTO `kriteria` (`nama_kriteria`, `bobot`, `tipe`) VALUES

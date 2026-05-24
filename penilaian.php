@@ -80,25 +80,27 @@ if ($selectedPeriode) {
 $periodeList = $db->query("SELECT DISTINCT periode FROM penilaian ORDER BY periode DESC")->fetchAll(PDO::FETCH_COLUMN);
 ?>
 
-<div class="page-header">
-    <h1>✏️ Input Penilaian Karyawan</h1>
+<div class="page-header" style="display:flex;flex-direction:column;gap:4px;">
+    <h1 style="display:flex;align-items:center;gap:10px;"><i data-lucide="pen-tool" style="width:28px;height:28px;color:var(--bri-blue);"></i> Input Penilaian Karyawan</h1>
     <p>Masukkan nilai penilaian karyawan per periode.</p>
 </div>
 
 <?php if (!empty($errors)): ?>
-    <div class="alert alert-danger">
-        <span>⚠️</span>
+    <div class="alert alert-danger" style="display:flex;align-items:center;gap:8px;">
+        <i data-lucide="alert-circle" style="width:18px;height:18px;flex-shrink:0;"></i>
         <div><?= implode('<br>', array_map('htmlspecialchars', $errors)) ?></div>
     </div>
 <?php endif; ?>
 
 <?php if (empty($kriteriaList)): ?>
-    <div class="alert alert-warning">
-        ⚠️ Belum ada kriteria. <a href="<?= BASE_URL ?>/kriteria.php" style="color:inherit;font-weight:700;">Tambahkan kriteria</a> terlebih dahulu.
+    <div class="alert alert-warning" style="display:flex;align-items:center;gap:8px;">
+        <i data-lucide="alert-triangle" style="width:18px;height:18px;flex-shrink:0;"></i>
+        <span>Belum ada kriteria. <a href="<?= BASE_URL ?>/kriteria.php" style="color:inherit;font-weight:700;">Tambahkan kriteria</a> terlebih dahulu.</span>
     </div>
 <?php elseif (empty($karyawanList)): ?>
-    <div class="alert alert-warning">
-        ⚠️ Belum ada karyawan. <a href="<?= BASE_URL ?>/karyawan.php" style="color:inherit;font-weight:700;">Tambahkan karyawan</a> terlebih dahulu.
+    <div class="alert alert-warning" style="display:flex;align-items:center;gap:8px;">
+        <i data-lucide="alert-triangle" style="width:18px;height:18px;flex-shrink:0;"></i>
+        <span>Belum ada karyawan. <a href="<?= BASE_URL ?>/karyawan.php" style="color:inherit;font-weight:700;">Tambahkan karyawan</a> terlebih dahulu.</span>
     </div>
 <?php else: ?>
 
@@ -120,7 +122,9 @@ $periodeList = $db->query("SELECT DISTINCT periode FROM penilaian ORDER BY perio
                     <option value="Operasional" <?= $selectedDivisi === 'Operasional' ? 'selected' : '' ?>>Operasional</option>
                 </select>
             </div>
-            <button type="submit" class="btn btn-primary">🔍 Tampilkan</button>
+            <button type="submit" class="btn btn-primary" style="display:inline-flex;align-items:center;gap:6px;">
+                <i data-lucide="search" style="width:14px;height:14px;"></i> Tampilkan
+            </button>
         </form>
     </div>
 </div>
@@ -129,13 +133,13 @@ $periodeList = $db->query("SELECT DISTINCT periode FROM penilaian ORDER BY perio
 <!-- Input Grid -->
 <div class="card">
     <div class="card-header">
-        <h5>📝 Form Penilaian — <?= htmlspecialchars($selectedPeriode) ?></h5>
+        <h5 style="display:flex;align-items:center;gap:8px;"><i data-lucide="file-spreadsheet" style="width:18px;height:18px;color:var(--bri-blue);"></i> Form Penilaian — <?= htmlspecialchars($selectedPeriode) ?></h5>
         <div style="display:flex;gap:8px;align-items:center;">
             <button type="button" class="btn btn-sm btn-secondary" onclick="fillAllValues(0)">Reset Semua</button>
             <?php if (in_array($selectedPeriode, $periodeList)): ?>
-                <button class="btn btn-sm btn-danger"
+                <button class="btn btn-sm btn-danger" style="display:inline-flex;align-items:center;gap:4px;"
                     onclick="confirmDelete('penilaian.php?delete_periode=<?= urlencode($selectedPeriode) ?>', 'semua penilaian periode <?= htmlspecialchars($selectedPeriode) ?>')">
-                    🗑️ Hapus Periode
+                    <i data-lucide="trash-2" style="width:12px;height:12px;"></i> Hapus Periode
                 </button>
             <?php endif; ?>
         </div>
@@ -194,13 +198,16 @@ $periodeList = $db->query("SELECT DISTINCT periode FROM penilaian ORDER BY perio
 
         <div style="padding:16px 24px;border-top:1px solid #e2e8f0;display:flex;justify-content:flex-end;gap:10px;">
             <a href="penilaian.php" class="btn btn-secondary">Batal</a>
-            <button type="submit" class="btn btn-primary">💾 Simpan Semua Penilaian</button>
+            <button type="submit" class="btn btn-primary" style="display:inline-flex;align-items:center;gap:6px;">
+                <i data-lucide="save" style="width:14px;height:14px;"></i> Simpan Semua Penilaian
+            </button>
         </div>
     </form>
 </div>
 <?php else: ?>
-    <div class="alert alert-info">
-        ℹ️ Pilih periode untuk menampilkan form input penilaian.
+    <div class="alert alert-info" style="display:flex;align-items:center;gap:8px;">
+        <i data-lucide="info" style="width:18px;height:18px;flex-shrink:0;"></i>
+        <span>Pilih periode untuk menampilkan form input penilaian.</span>
     </div>
 <?php endif; ?>
 
@@ -208,7 +215,7 @@ $periodeList = $db->query("SELECT DISTINCT periode FROM penilaian ORDER BY perio
 <?php if (!empty($periodeList)): ?>
 <div class="card" style="margin-top:20px;">
     <div class="card-header">
-        <h5>📅 Periode Penilaian Tersimpan</h5>
+        <h5 style="display:flex;align-items:center;gap:8px;"><i data-lucide="calendar" style="width:18px;height:18px;color:var(--bri-blue);"></i> Periode Penilaian Tersimpan</h5>
     </div>
     <div class="table-wrapper">
         <table class="table">
@@ -231,11 +238,15 @@ $periodeList = $db->query("SELECT DISTINCT periode FROM penilaian ORDER BY perio
                     <td><?= $jumlah ?> entri</td>
                     <td>
                         <div style="display:flex;gap:6px;">
-                            <a href="penilaian.php?periode=<?= urlencode($p) ?>" class="btn btn-sm btn-outline">✏️ Edit</a>
-                            <a href="hasil.php?periode=<?= urlencode($p) ?>" class="btn btn-sm btn-gold">🏆 Hitung MOORA</a>
-                            <button class="btn btn-sm btn-danger"
+                            <a href="penilaian.php?periode=<?= urlencode($p) ?>" class="btn btn-sm btn-outline" style="display:inline-flex;align-items:center;gap:4px;">
+                                <i data-lucide="edit-2" style="width:12px;height:12px;"></i> Edit
+                            </a>
+                            <a href="hasil.php?periode=<?= urlencode($p) ?>" class="btn btn-sm btn-gold" style="display:inline-flex;align-items:center;gap:4px;">
+                                <i data-lucide="calculator" style="width:12px;height:12px;"></i> Hitung MOORA
+                            </a>
+                            <button class="btn btn-sm btn-danger btn-icon"
                                 onclick="confirmDelete('penilaian.php?delete_periode=<?= urlencode($p) ?>', 'periode <?= htmlspecialchars($p) ?>')">
-                                🗑️
+                                <i data-lucide="trash-2" style="width:12px;height:12px;"></i>
                             </button>
                         </div>
                     </td>

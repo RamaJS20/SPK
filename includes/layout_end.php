@@ -5,7 +5,7 @@
 <div class="modal-overlay" id="modal-delete">
     <div class="modal-box" style="max-width:400px;">
         <div class="modal-header">
-            <h5>⚠️ Konfirmasi Hapus</h5>
+            <h5 style="display:flex;align-items:center;gap:6px;"><i data-lucide="alert-triangle" style="width:18px;height:18px;color:#e53e3e;"></i> Konfirmasi Hapus</h5>
             <button class="modal-close" onclick="Modal.close('modal-delete')">×</button>
         </div>
         <div class="modal-body">
@@ -25,6 +25,9 @@
 <div class="toast-container" id="toast-container"></div>
 
 <script src="<?= BASE_URL ?>/assets/js/main.js"></script>
+<script>
+    lucide.createIcons();
+</script>
 <?php if (isset($extraScripts)) echo $extraScripts; ?>
 </body>
 </html>

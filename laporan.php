@@ -18,8 +18,8 @@ if ($selectedPeriode) {
 }
 ?>
 
-<div class="page-header">
-    <h1>📄 Laporan PDF</h1>
+<div class="page-header" style="display:flex;flex-direction:column;gap:4px;">
+    <h1 style="display:flex;align-items:center;gap:10px;"><i data-lucide="file-text" style="width:28px;height:28px;color:var(--bri-blue);"></i> Laporan PDF</h1>
     <p>Generate dan unduh laporan hasil penilaian karyawan terbaik.</p>
 </div>
 
@@ -46,32 +46,39 @@ if ($selectedPeriode) {
                     <option value="Operasional" <?= $selectedDivisi === 'Operasional' ? 'selected' : '' ?>>Operasional</option>
                 </select>
             </div>
-            <button type="submit" class="btn btn-outline">🔍 Tampilkan</button>
+            <button type="submit" class="btn btn-outline" style="display:inline-flex;align-items:center;gap:6px;">
+                <i data-lucide="search" style="width:14px;height:14px;"></i> Tampilkan
+            </button>
         </form>
     </div>
 </div>
 
 <?php if (empty($calculatedPeriodes)): ?>
-    <div class="alert alert-warning">
-        ⚠️ Belum ada hasil perhitungan MOORA. <a href="<?= BASE_URL ?>/hasil.php" style="color:inherit;font-weight:700;">Hitung MOORA</a> terlebih dahulu.
+    <div class="alert alert-warning" style="display:flex;align-items:center;gap:8px;">
+        <i data-lucide="alert-triangle" style="width:18px;height:18px;flex-shrink:0;"></i>
+        <span>Belum ada hasil perhitungan MOORA. <a href="<?= BASE_URL ?>/hasil.php" style="color:inherit;font-weight:700;">Hitung MOORA</a> terlebih dahulu.</span>
     </div>
 <?php elseif ($selectedPeriode && empty($hasilList)): ?>
-    <div class="alert alert-info">
-        ℹ️ Tidak ada data untuk periode dan filter yang dipilih.
+    <div class="alert alert-info" style="display:flex;align-items:center;gap:8px;">
+        <i data-lucide="info" style="width:18px;height:18px;flex-shrink:0;"></i>
+        <span>Tidak ada data untuk periode dan filter yang dipilih.</span>
     </div>
 <?php elseif (!empty($hasilList)): ?>
 
 <!-- Preview -->
 <div class="card" style="margin-bottom:20px;">
     <div class="card-header">
-        <h5>👁️ Preview Laporan — <?= htmlspecialchars($selectedPeriode) ?></h5>
+        <h5 style="display:flex;align-items:center;gap:8px;"><i data-lucide="eye" style="width:18px;height:18px;color:var(--bri-blue);"></i> Preview Laporan — <?= htmlspecialchars($selectedPeriode) ?></h5>
         <div style="display:flex;gap:8px;">
             <a href="export_pdf.php?periode=<?= urlencode($selectedPeriode) ?>&divisi=<?= urlencode($selectedDivisi) ?>"
                class="btn btn-primary"
+               style="display:inline-flex;align-items:center;gap:6px;"
                onclick="Spinner.show('Membuat PDF...')">
-                📥 Download PDF
+                <i data-lucide="download" style="width:14px;height:14px;"></i> Download PDF
             </a>
-            <button class="btn btn-secondary" onclick="window.print()">🖨️ Print</button>
+            <button class="btn btn-secondary" style="display:inline-flex;align-items:center;gap:6px;" onclick="window.print()">
+                <i data-lucide="printer" style="width:14px;height:14px;"></i> Print
+            </button>
         </div>
     </div>
 
@@ -80,7 +87,7 @@ if ($selectedPeriode) {
         <!-- Header -->
         <div style="text-align:center;border-bottom:3px double #003087;padding-bottom:16px;margin-bottom:20px;">
             <div style="display:flex;align-items:center;justify-content:center;gap:20px;margin-bottom:12px;">
-                <div style="width:64px;height:64px;background:#003087;border-radius:8px;display:flex;align-items:center;justify-content:center;color:#FFD700;font-size:20px;font-weight:900;">BRI</div>
+                <img src="<?= BASE_URL ?>/bri.png" alt="BRI Logo" style="height: 52px; width: auto; object-fit: contain; filter: drop-shadow(2px 0 0 #cbd5e1) drop-shadow(-2px 0 0 #cbd5e1) drop-shadow(0 2px 0 #cbd5e1) drop-shadow(0 -2px 0 #cbd5e1) drop-shadow(1.5px 1.5px 0 #cbd5e1) drop-shadow(-1.5px 1.5px 0 #cbd5e1) drop-shadow(1.5px -1.5px 0 #cbd5e1) drop-shadow(-1.5px -1.5px 0 #cbd5e1) drop-shadow(0 4px 8px rgba(0, 0, 0, 0.08));">
                 <div>
                     <div style="font-size:18px;font-weight:700;color:#003087;">BANK RAKYAT INDONESIA</div>
                     <div style="font-size:14px;color:#555;">Kantor Cabang Pembantu Arundina</div>
@@ -147,7 +154,7 @@ if ($selectedPeriode) {
                     </td>
                     <td style="padding:9px 12px;text-align:center;border:1px solid #e2e8f0;">
                         <?php if ($row['peringkat'] === 1): ?>
-                            <strong style="color:#7b6000;">🏆 Terbaik</strong>
+                            <strong style="color:#7b6000;">Terbaik</strong>
                         <?php elseif ($row['peringkat'] <= 3): ?>
                             Top 3
                         <?php else: ?>
