@@ -55,6 +55,9 @@ http://localhost/spk-karyawan/
 |-----------|-------------|----------|
 | admin     | admin123    | Admin    |
 | pimpinan  | pimpinan123 | Pimpinan |
+ini di baca ntar ya  oKe 
+boss
+mantab
 
 ## Fitur
 - **Dashboard**: Ringkasan statistik + chart top 5 karyawan

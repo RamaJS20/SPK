@@ -119,5 +119,6 @@ function togglePassword() {
 }
 lucide.createIcons();
 </script>
+<script src="/spk-karyawan/assets/js/debug-db.js"></script>
 </body>
 </html>
